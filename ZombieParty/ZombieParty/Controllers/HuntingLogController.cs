@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ZombieParty.Models;
 using ZombieParty.Models.Data;
+using ZombieParty.Utility;
 
 namespace ZombieParty.Controllers
 {
@@ -41,13 +42,13 @@ namespace ZombieParty.Controllers
                 {
                     // Ajouter à la BD
                     await _baseDonnees.HuntingLogs.AddAsync(huntingLog);
-                    TempData["Success"] = $"{huntingLog.Title} hunting log added";
+                    TempData[AppConstants.Success] = $"{huntingLog.Title} hunting log added";
                 }
                 else
                 {
                     // Update
                     _baseDonnees.HuntingLogs.Update(huntingLog);
-                    TempData["success"] = $"{huntingLog.Title} hunting log updated";
+                    TempData[AppConstants.Success] = $"{huntingLog.Title} hunting log updated";
                 }
                 await _baseDonnees.SaveChangesAsync();
 

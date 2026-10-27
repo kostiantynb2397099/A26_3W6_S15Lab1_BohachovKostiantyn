@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ZombieParty.Models;
 using ZombieParty.Models.Data;
+using ZombieParty.Utility;
 using ZombieParty.ViewModels;
 
 namespace ZombieParty.Controllers
@@ -53,7 +54,7 @@ namespace ZombieParty.Controllers
 
             _baseDonnees.Zombies.Remove(zombie);
             await _baseDonnees.SaveChangesAsync();
-            TempData["Success"] = $"Zombie {zombie.Name} terminated";
+            TempData[AppConstants.Success] = $"Zombie {zombie.Name} terminated";
             return RedirectToAction("Index");
         }
 
@@ -79,7 +80,7 @@ namespace ZombieParty.Controllers
             {
                 _baseDonnees.Zombies.Update(zombieVM.Zombie);
                 await _baseDonnees.SaveChangesAsync();
-                TempData["Success"] = $"Zombie {zombieVM.Zombie.Name} has been modified";
+                TempData[AppConstants.Success] = $"Zombie {zombieVM.Zombie.Name} has been modified";
                 return this.RedirectToAction("Index");
             }
             zombieVM.ZombieTypeSelectList = _baseDonnees.ZombieTypes.Select(t => new SelectListItem
@@ -112,7 +113,7 @@ namespace ZombieParty.Controllers
             {
                 await _baseDonnees.Zombies.AddAsync(zombieVM.Zombie);
                 await _baseDonnees.SaveChangesAsync();
-                TempData["Success"] = $"Zombie {zombieVM.Zombie.Name} added";
+                TempData[AppConstants.Success] = $"Zombie {zombieVM.Zombie.Name} added";
                 return this.RedirectToAction("Index");
             }
             zombieVM.ZombieTypeSelectList = _baseDonnees.ZombieTypes.Select(t => new SelectListItem

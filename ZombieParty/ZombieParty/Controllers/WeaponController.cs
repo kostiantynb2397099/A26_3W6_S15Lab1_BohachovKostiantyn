@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ZombieParty.Models;
 using ZombieParty.Models.Data;
+using ZombieParty.Utility;
 using ZombieParty.ViewModels;
 
 namespace ZombieParty.Controllers
@@ -43,13 +44,13 @@ namespace ZombieParty.Controllers
                 {
                     // Ajouter à la BD
                     await _baseDonnees.Weapons.AddAsync(weapon);
-                    TempData["Success"] = $"{weapon.Name} weapon added";
+                    TempData[AppConstants.Success] = $"{weapon.Name} weapon added";
                 }
                 else
                 {
                     // Update
                     _baseDonnees.Weapons.Update(weapon);
-                    TempData["success"] = $"{weapon.Name} weapon updated";
+                    TempData[AppConstants.Success] = $"{weapon.Name} weapon updated";
                 }
                 await _baseDonnees.SaveChangesAsync();
 

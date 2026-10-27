@@ -14,6 +14,9 @@ namespace ZombieParty.Models
         [StringLength(255)]
         public string ShortDesc { get; set; }
 
+        [ValidateNever]
+        public string Image { get; set; }
+
         [Range(1, 20, ErrorMessage = "{0} requires a value between {1} and {2}.")]
         public int Point { get; set; }
 
